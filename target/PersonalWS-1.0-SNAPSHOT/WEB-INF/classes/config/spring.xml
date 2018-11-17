@@ -2,9 +2,50 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:component-scan base-package="com.layman" />
 
     <import resource="springdao.xml" />
+
+    <bean class="com.layman.filter.RolesOrFilter" id="rolesOrFilter" />
+
+    <!-- shiro配置 -->
+
+    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/view/background/login.jsp" />
+        <property name="unauthorizedUrl" value="403.html" />
+        <property name="filterChainDefinitions" >
+            <value>
+                /* = anon
+            </value>
+        </property>
+        <property name="filters">
+            <util:map>
+                <entry key="rolesOr" value-ref="rolesOrFilter" />
+            </util:map>
+        </property>
+    </bean>
+
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager" >
+        <property name="realm" ref="realm" />
+        <property name="sessionManager" ref="sessionManager"/>
+        <!--<property name="cacheManager" ref="cacheManager" />-->
+        <!--<property name="rememberMeManager" ref="cookieRememberMeManager" />-->
+    </bean>
+
+    <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager">
+        <!--<property name="sessionDAO" ref="sessionDao" />-->
+    </bean>
+
+    <bean class="com.layman.shiro.realm.CustomerRealm" id="realm" >
+        <property name="credentialsMatcher" ref="credentialsMatcher" />
+    </bean>
+
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <property name="hashAlgorithmName" value="md5" />
+        <property name="hashIterations" value="1" />
+    </bean>
 </beans>
