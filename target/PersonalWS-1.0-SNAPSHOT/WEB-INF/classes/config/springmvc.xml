@@ -11,6 +11,7 @@
     <mvc:default-servlet-handler />
     <mvc:annotation-driven />
 
+    <!-- 视图配置（前缀和后缀） -->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/view/" />
         <property name="suffix" value=".jsp" />

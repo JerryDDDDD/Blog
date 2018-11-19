@@ -32,7 +32,7 @@ public class AccountController {
 //            System.out.println("验证码错误");
 //        }
         if ( userService.checkUser(username,password)){
-            return "common/main";
+            return "background/home";
         }else {
             return "/404";
         }

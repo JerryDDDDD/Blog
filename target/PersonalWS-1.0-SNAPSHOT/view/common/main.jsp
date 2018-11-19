@@ -11,9 +11,9 @@
     <head>
         <meta charset="utf-8" />
         <title></title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <script type="application/javascript" src="js/jquery-1.11.0.js"></script>
-        <script type="application/javascript" src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+        <script type="application/javascript" src="../js/jquery-1.11.0.js"></script>
+        <script type="application/javascript" src="../js/bootstrap.min.js"></script>
     </head>
 </head>
 <body >
