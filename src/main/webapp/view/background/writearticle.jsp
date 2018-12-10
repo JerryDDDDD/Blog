@@ -19,6 +19,7 @@
 </head>
 <body>
 <div class="container-fluid">
+    <input type="text" id="test" name="test"/>
     <div class="row">
         <div class="col-lg-offset-2 col-lg-6">
             <form class="form-inline title_msg" style="width: 60%">
@@ -38,6 +39,7 @@
     <div id="editor">
 
     </div>
+
 </div>
 </body>
 <script type="application/javascript">
